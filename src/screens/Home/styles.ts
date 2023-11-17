@@ -4,14 +4,29 @@ import theme from '../../theme/index';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: theme.COLORS.GRAY_70,
+    backgroundColor: theme.COLORS.GRAY_10,
+
+    padding: 24,
   },
 
-  text: {
-    fontSize: 20,
-    color: '#fff',
-    fontFamily: theme.FONT_FAMILY.BOLD,
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+
+  percentageContent: {
+    width: '100%',
+    height: 102,
+
+    backgroundColor: theme.COLORS.GREEN_LIGHT,
+    borderRadius: 8,
+    marginTop: 32,
+    marginBottom: 40,
+  },
+
+  title: {
+    fontSize:theme.FONT_SIZE.MD,
+    color: theme.COLORS.GRAY_70,
+    fontFamily: theme.FONT_FAMILY.REGULAR,
   },
 });

@@ -5,7 +5,7 @@ function App(): JSX.Element {
   return (
     <>
       <StatusBar
-        barStyle={'light-content'}
+        barStyle={'dark-content'}
         translucent
         backgroundColor="transparent"
       />
