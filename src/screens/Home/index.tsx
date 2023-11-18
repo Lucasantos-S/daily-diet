@@ -3,8 +3,7 @@ import { Text, View, Animated, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { styles } from './styles';
-
-import Logo from '@/assets/icons/Logo';
+import theme from '@/theme';
 
 import { Avatar } from '@/components/Avatar';
 import { PercentageText } from '@/components/PercentageText';
@@ -55,12 +54,16 @@ export function Home() {
         <Avatar />
       </View>
       <View style={styles.percentageContent}>
-        <ArrowIcon type="OPEN" color />
-        <PercentageText />
+        <ArrowIcon type="OPEN" color onPress={handleNavigation} />
+        <PercentageText
+          value=" 30,21%"
+          description="das refeições dentro da dieta"
+          fontSize={theme.FONT_SIZE.G}
+        />
       </View>
       <Text style={styles.title}>Refeições</Text>
 
-      <Button text="Nova refeição" type="PRIMARY" onPress={handleNavigation} />
+      <Button text="Nova refeição" type="PRIMARY" />
 
       <Text style={styles.TextDay}>12.08.22</Text>
       {renderMealList}

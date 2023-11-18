@@ -20,6 +20,8 @@ export const styles = StyleSheet.create({
   percentageContent: {
     width: '100%',
     height: 102,
+    alignItems: 'center',
+    justifyContent: 'center',
 
     backgroundColor: theme.COLORS.GREEN_LIGHT,
     borderRadius: 8,
