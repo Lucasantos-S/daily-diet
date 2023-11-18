@@ -46,8 +46,9 @@ export const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 50, // Altura da área borrada
-    backgroundColor: 'rgba(255, 255, 255, 0.7)', // Cor de fundo com opacidade
-    zIndex: 1, // Para garantir que a sobreposição esteja acima da FlatList
+    height: 30,
+    backgroundColor: theme.COLORS.GRAY_10,
+    opacity: 0.9,
+    zIndex: 1,
   },
 });

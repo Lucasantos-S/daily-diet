@@ -1,5 +1,6 @@
 import React from 'react';
 import { SvgXml } from 'react-native-svg';
+import { Props } from './Icons.structure';
 
 const xml = `<svg width="82" height="37" viewBox="0 0 82 37" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M12.2301 2.89062C13.1951 2.89062 13.9773 3.66713 13.9773 4.625V10.4062C13.9773 11.3641 13.1951 12.1406 12.2301 12.1406C11.2652 12.1406 10.483 11.3641 10.483 10.4062V4.625C10.483 3.66713 11.2652 2.89062 12.2301 2.89062Z" fill="#1B1D1E"/>
@@ -18,6 +19,6 @@ const xml = `<svg width="82" height="37" viewBox="0 0 82 37" fill="none" xmlns="
 </svg>
 `;
 
-export default function Logo() {
+export default function Logo({ color }: Props) {
   return <SvgXml xml={xml} />;
 }

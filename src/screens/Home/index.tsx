@@ -11,6 +11,8 @@ import { PercentageText } from '@/components/PercentageText';
 import { Button } from '@/components/Button';
 import { useNavigation } from '@react-navigation/native';
 import { MealItem } from '@/components/MealItem';
+import Icons from '@/assets/icons';
+import { ArrowIcon } from '@/components/ArrowIcon';
 
 export function Home() {
   const navigation = useNavigation();
@@ -49,10 +51,11 @@ export function Home() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Logo />
+        <Icons name="Logo" />
         <Avatar />
       </View>
       <View style={styles.percentageContent}>
+        <ArrowIcon type="OPEN" color />
         <PercentageText />
       </View>
       <Text style={styles.title}>Refeições</Text>
