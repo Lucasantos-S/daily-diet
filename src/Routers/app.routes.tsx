@@ -6,7 +6,7 @@ const { Navigator, Screen } = createNativeStackNavigator();
 
 export function AppRouters() {
   return (
-    <Navigator screenOptions={{ headerShown: false }}>
+    <Navigator initialRouteName="home" screenOptions={{ headerShown: false }}>
       <Screen name="home" component={Home} />
       <Screen name="statistic" component={Statistics} />
     </Navigator>

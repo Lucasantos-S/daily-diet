@@ -6,7 +6,7 @@ import { styles } from './styles';
 export function Statistics() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Home</Text>
+      <Text style={styles.text}>Statistics</Text>
     </View>
   );
 }

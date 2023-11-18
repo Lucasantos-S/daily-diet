@@ -6,7 +6,10 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.COLORS.GRAY_10,
 
-    padding: 24,
+    paddingTop: 24,
+    paddingLeft: 24,
+    paddingRight: 24,
+    overflow: 'hidden',
   },
 
   header: {
@@ -25,8 +28,26 @@ export const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize:theme.FONT_SIZE.MD,
+    fontSize: theme.FONT_SIZE.MD,
     color: theme.COLORS.GRAY_70,
     fontFamily: theme.FONT_FAMILY.REGULAR,
+  },
+
+  TextDay: {
+    fontSize: theme.FONT_SIZE.LG,
+    color: theme.COLORS.GRAY_70,
+    fontFamily: theme.FONT_FAMILY.BOLD,
+
+    marginTop: 32,
+  },
+
+  blurOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 50, // Altura da área borrada
+    backgroundColor: 'rgba(255, 255, 255, 0.7)', // Cor de fundo com opacidade
+    zIndex: 1, // Para garantir que a sobreposição esteja acima da FlatList
   },
 });
