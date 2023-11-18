@@ -12,18 +12,12 @@ import { useNavigation } from '@react-navigation/native';
 import { MealItem } from '@/components/MealItem';
 import Icons from '@/assets/icons';
 import { ArrowIcon } from '@/components/ArrowIcon';
+import AnimationWithImperativeApi from '@/components/LottieAnimated/AnimationList';
+import { ListEmpty } from '@/components/ListEmpty';
 
 export function Home() {
   const navigation = useNavigation();
-  const [meal, setMeal] = useState([
-    'Whey protein com leite',
-    'Salada cesar com frango grelhado',
-    ' Salada',
-    'x-tudo',
-    'cuzinho',
-    'Pizza',
-    'macarron',
-  ]);
+  const [meal, setMeal] = useState([]);
 
   function handleNavigation() {
     console.log('navigation');
@@ -40,9 +34,9 @@ export function Home() {
           (meal.length === 0 && { marginTop: 100 },
           { borderBottomWidth: 50, borderColor: 'transparent' })
         }
-        // ListEmptyComponent={() => (
-        //   <ListEmpty message="Nenhuma turma cadastrada, que tal cadastrar?" />
-        // )}
+        ListEmptyComponent={() => (
+          <ListEmpty text="Nenhuma refeição cadastrada ate o momento." />
+        )}
         showsVerticalScrollIndicator={false}
       />
     );
