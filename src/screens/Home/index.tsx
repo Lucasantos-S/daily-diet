@@ -57,7 +57,13 @@ export function Home() {
       </View>
       <Text style={styles.title}>Refeições</Text>
 
-      <Button text="Nova refeição" type="PRIMARY" />
+      <Button
+        text="Nova refeição"
+        type="PRIMARY"
+        onPress={() =>
+          navigation.navigate('meal', { title: 'Nova refeição' })
+        }
+      />
 
       <Text style={styles.TextDay}>12.08.22</Text>
       {renderMealList}
