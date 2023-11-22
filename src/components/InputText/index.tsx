@@ -23,7 +23,7 @@ export function InputText({
 }: InputProps) {
   return (
     <View style={[styles.container, { width: width }]}>
-      <Text>{label}</Text>
+      <Text style={styles.label}>{label}</Text>
       <TextInput
         style={[styles.inputText, { height: height}]}
         {...rest}></TextInput>

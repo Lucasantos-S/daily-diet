@@ -4,7 +4,12 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     width: '100%',
-    paddingTop: 40,
+    marginTop: 24,
+  },
+  label: {
+    color: theme.COLORS.GRAY_70,
+    fontFamily: theme.FONT_FAMILY.BOLD,
+    fontSize: theme.FONT_SIZE.SM,
   },
   inputText: {
     padding: 10,

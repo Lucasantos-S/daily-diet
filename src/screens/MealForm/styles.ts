@@ -13,14 +13,29 @@ export const styles = StyleSheet.create({
 
     alignContent: 'center',
     marginTop: 34,
-    padding:24,
+    padding: 24,
+    paddingTop: 16,
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
   },
   dateContainer: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
+  },
+
+  dietSelectContainer: {
+    flex: 1,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+
+    marginTop: 8,
+  },
+
+  dietTitle: {
+    marginTop: 24,
+    color: theme.COLORS.GRAY_70,
+    fontSize: theme.FONT_SIZE.SM,
+    fontFamily: theme.FONT_FAMILY.BOLD,
   },
 });

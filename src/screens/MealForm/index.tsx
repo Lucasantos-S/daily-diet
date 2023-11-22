@@ -8,6 +8,7 @@ import { useRoute } from '@react-navigation/native';
 import { useForm, Controller } from 'react-hook-form';
 import { InputText } from '@/components/InputText';
 import { Button } from '@/components/Button';
+import { SelectButton, SelectButtonType } from '@/components/SelectButton';
 
 type RouterParams = {
   title: string;
@@ -21,6 +22,8 @@ type FormData = {
 };
 
 export function MealForm() {
+  const [IsDiet, setIsDiet] = React.useState('DIET' as SelectButtonType);
+
   const router = useRoute();
   const { title } = router.params as RouterParams;
 
@@ -61,7 +64,7 @@ export function MealForm() {
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <InputText
-              label="Nome"
+              label="Descrição"
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
@@ -108,6 +111,21 @@ export function MealForm() {
               />
             )}
             name="description"
+          />
+        </View>
+        <Text style={styles.dietTitle}>Está dentro da dieta?</Text>
+        <View style={styles.dietSelectContainer}>
+          <SelectButton
+            text="Sim"
+            type="DIET"
+            IsActive={IsDiet === 'DIET'}
+            onPress={() => setIsDiet('DIET')}
+          />
+          <SelectButton
+            text="Sim"
+            type="DIET"
+            IsActive={IsDiet === 'NOT_DIET'}
+            onPress={() => setIsDiet('NOT_DIET')}
           />
         </View>
         <Button text="Cadastrar refeição" type="PRIMARY" />
