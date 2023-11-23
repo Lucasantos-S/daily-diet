@@ -4,11 +4,11 @@ import { Text, TextInput, View } from 'react-native';
 import { styles } from './styles';
 import { MealHeader } from '@/components/MealHeader';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useForm, Controller } from 'react-hook-form';
 import { InputText } from '@/components/InputText';
 import { Button } from '@/components/Button';
-import { SelectButton, SelectButtonType } from '@/components/SelectButton';
+import { SelectButton } from '@/components/SelectButton';
 
 type RouterParams = {
   title: string;
@@ -22,10 +22,12 @@ type FormData = {
 };
 
 export function MealForm() {
-  const [IsDiet, setIsDiet] = React.useState('DIET' as SelectButtonType);
+  const [IsDiet, setIsDiet] = React.useState(true as boolean);
 
   const router = useRoute();
   const { title } = router.params as RouterParams;
+
+  const navigation = useNavigation();
 
   const {
     register,
@@ -34,7 +36,9 @@ export function MealForm() {
     control,
     formState: { errors },
   } = useForm<FormData>();
-  const onSubmit = handleSubmit(data => console.log(data));
+  const onSubmit = handleSubmit(data =>
+    navigation.navigate('feedback', { diet: IsDiet }),
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -43,7 +47,7 @@ export function MealForm() {
         <Controller
           control={control}
           rules={{
-            required: true,
+            required: false,
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <InputText
@@ -60,7 +64,7 @@ export function MealForm() {
         <Controller
           control={control}
           rules={{
-            required: true,
+            required: false,
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <InputText
@@ -81,7 +85,7 @@ export function MealForm() {
           <Controller
             control={control}
             rules={{
-              required: true,
+              required: false,
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <InputText
@@ -98,7 +102,7 @@ export function MealForm() {
           <Controller
             control={control}
             rules={{
-              required: true,
+              required: false,
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <InputText
@@ -118,17 +122,17 @@ export function MealForm() {
           <SelectButton
             text="Sim"
             type="DIET"
-            IsActive={IsDiet === 'DIET'}
-            onPress={() => setIsDiet('DIET')}
+            IsActive={IsDiet}
+            onPress={() => setIsDiet(true)}
           />
           <SelectButton
-            text="Sim"
-            type="DIET"
-            IsActive={IsDiet === 'NOT_DIET'}
-            onPress={() => setIsDiet('NOT_DIET')}
+            text="Não"
+            type="NOT_DIET"
+            IsActive={!IsDiet}
+            onPress={() => setIsDiet(false)}
           />
         </View>
-        <Button text="Cadastrar refeição" type="PRIMARY" />
+        <Button text="Cadastrar refeição" type="PRIMARY" onPress={onSubmit} />
       </View>
     </SafeAreaView>
   );

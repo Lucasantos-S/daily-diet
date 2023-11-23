@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
 
     borderRadius: 6,
     marginTop: 8,
+    paddingHorizontal: 20,
   },
 
   text: {

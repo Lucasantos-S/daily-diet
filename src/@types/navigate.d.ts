@@ -6,6 +6,9 @@ export declare global {
       meal: {
         title: string;
       };
+      feedback: {
+        diet: boolean;
+      };          
     }
   }
 }

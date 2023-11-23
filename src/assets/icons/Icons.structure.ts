@@ -7,4 +7,6 @@ export interface Props {
 export interface IIcons {
   Logo: JSX.Element;
   OpenIcon: JSX.Element;
+  PositiveIcon: JSX.Element;
+  NegativeIcon: JSX.Element;
 }

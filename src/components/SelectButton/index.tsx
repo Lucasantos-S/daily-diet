@@ -37,7 +37,7 @@ export function SelectButton({ text, type, IsActive, ...rest }: SelectButton) {
             backgroundColor:
               type === 'DIET'
                 ? theme.COLORS.GREEN_DARK
-                : theme.COLORS.GREEN_DARK,
+                : theme.COLORS.RED_DARK
           },
         ]}></View>
       <Text style={styles.text}>{text}</Text>

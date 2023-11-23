@@ -10,10 +10,11 @@ import { PercentageText } from '@/components/PercentageText';
 import { Button } from '@/components/Button';
 import { useNavigation } from '@react-navigation/native';
 import { MealItem } from '@/components/MealItem';
-import Icons from '@/assets/icons';
+
 import { ArrowIcon } from '@/components/ArrowIcon';
 import AnimationWithImperativeApi from '@/components/LottieAnimated/AnimationList';
 import { ListEmpty } from '@/components/ListEmpty';
+import Icons from '@/assets/icons';
 
 export function Home() {
   const navigation = useNavigation();
@@ -60,9 +61,7 @@ export function Home() {
       <Button
         text="Nova refeição"
         type="PRIMARY"
-        onPress={() =>
-          navigation.navigate('meal', { title: 'Nova refeição' })
-        }
+        onPress={() => navigation.navigate('meal', { title: 'Nova refeição' })}
       />
 
       <Text style={styles.TextDay}>12.08.22</Text>
