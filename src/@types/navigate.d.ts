@@ -6,9 +6,16 @@ export declare global {
       meal: {
         title: string;
       };
+      mealDetails: {
+        diet: boolean;
+        mealData?: {
+          name: string;
+          description: string;
+        };
+      };
       feedback: {
         diet: boolean;
-      };          
+      };
     }
   }
 }
