@@ -62,7 +62,7 @@ export function Home() {
         type="PRIMARY"
         onPress={() =>
           navigation.navigate('mealDetails', {
-            diet: true,
+            diet: false,
             mealData: { name: 'xTudo', description: 'sanduiche completo' },
           })
         }

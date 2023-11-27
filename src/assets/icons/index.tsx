@@ -5,6 +5,8 @@ import Logo from './Logo';
 import OpenIcon from './OpenIcon';
 import PositiveIcon from './PositveIcon';
 import NegativeIcon from './NegativeIcon';
+import Edit from './edit';
+import Delete from './delete';
 
 /**
  * @description Component to render all svg icons
@@ -23,6 +25,8 @@ export default function Icons({ name, color }: IIconProps) {
     OpenIcon: <OpenIcon {...iconsProps} />,
     PositiveIcon: <PositiveIcon {...iconsProps} />,
     NegativeIcon: <NegativeIcon {...iconsProps} />,
+    Edit: <Edit {...iconsProps} />,
+    Delete: <Delete {...iconsProps} />,
   };
 
   return iconsHashmap[name as keyof typeof iconsHashmap] || null;

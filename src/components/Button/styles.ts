@@ -15,6 +15,11 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
 
+  icon: {
+    position: 'absolute',
+    left: 90,
+  },
+
   text: {
     fontSize: theme.FONT_SIZE.SM,
     color: theme.COLORS.WHITE,

@@ -9,4 +9,6 @@ export interface IIcons {
   OpenIcon: JSX.Element;
   PositiveIcon: JSX.Element;
   NegativeIcon: JSX.Element;
+  Edit: JSX.Element;
+  Delete: JSX.Element;
 }

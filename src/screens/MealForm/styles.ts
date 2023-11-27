@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
   dietTitle: {
     marginTop: 24,
     color: theme.COLORS.GRAY_70,
-    fontSize: theme.FONT_SIZE.SM,
+    fontSize: theme.FONT_SIZE.MD,
     fontFamily: theme.FONT_FAMILY.BOLD,
   },
 });
