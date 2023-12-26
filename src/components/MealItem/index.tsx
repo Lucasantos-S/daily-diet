@@ -7,11 +7,12 @@ import {
 } from 'react-native';
 
 import { styles } from './styles';
+import theme from '@/theme';
 
 type IMealItemProps = TouchableOpacityProps & {
   text: string;
   time: string;
-  status?: string;
+  status?: boolean;
 };
 
 export function MealItem({ text, time, status }: IMealItemProps) {
@@ -19,7 +20,15 @@ export function MealItem({ text, time, status }: IMealItemProps) {
     <TouchableOpacity style={styles.container}>
       <Text style={styles.time}>{time}</Text>
       <Text style={styles.text}>{text}</Text>
-      <View style={styles.status}></View>
+      <View
+        style={[
+          styles.status,
+          {
+            backgroundColor: status
+              ? theme.COLORS.GREEN_LIGHT
+              : theme.COLORS.RED_LIGHT,
+          },
+        ]}></View>
     </TouchableOpacity>
   );
 }

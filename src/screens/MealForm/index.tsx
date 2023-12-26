@@ -9,6 +9,8 @@ import { useForm, Controller } from 'react-hook-form';
 import { InputText } from '@/components/InputText';
 import { Button } from '@/components/Button';
 import { SelectButton } from '@/components/SelectButton';
+import { MealCreate } from '@/storage/NewMeal/mealCreate';
+import { v4 as uuidv4 } from 'uuid';
 
 type RouterParams = {
   title: string;
@@ -18,7 +20,8 @@ type FormData = {
   name: string;
   description: string;
   date: string;
-  hours: number;
+  time: string;
+  diet: boolean;
 };
 
 export function MealForm() {
@@ -36,9 +39,13 @@ export function MealForm() {
     control,
     formState: { errors },
   } = useForm<FormData>();
-  const onSubmit = handleSubmit(data =>
-    navigation.navigate('feedback', { diet: IsDiet }),
-  );
+  const onSubmit = handleSubmit(data => {
+    // navigation.navigate('feedback', { diet: IsDiet });
+    MealCreate({
+      id: JSON.stringify(new Date()),
+      ...data,
+    });
+  });
 
   return (
     <SafeAreaView style={styles.container}>
@@ -97,7 +104,7 @@ export function MealForm() {
                 width="45%"
               />
             )}
-            name="description"
+            name="date"
           />
           <Controller
             control={control}
@@ -114,7 +121,7 @@ export function MealForm() {
                 width="45%"
               />
             )}
-            name="description"
+            name="time"
           />
         </View>
         <Text style={styles.dietTitle}>Está dentro da dieta?</Text>

@@ -5,8 +5,8 @@ import Logo from './Logo';
 import OpenIcon from './OpenIcon';
 import PositiveIcon from './PositveIcon';
 import NegativeIcon from './NegativeIcon';
-import Edit from './edit';
-import Delete from './delete';
+import Edit from './Edit';
+import Delete from './Delete';
 
 /**
  * @description Component to render all svg icons

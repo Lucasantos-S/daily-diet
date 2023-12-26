@@ -8,28 +8,36 @@ import theme from '@/theme';
 import { Avatar } from '@/components/Avatar';
 import { PercentageText } from '@/components/PercentageText';
 import { Button } from '@/components/Button';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { MealItem } from '@/components/MealItem';
 import { ArrowIcon } from '@/components/ArrowIcon';
 
 import { ListEmpty } from '@/components/ListEmpty';
 import Icons from '@/assets/icons';
+import { Meals, mealGetAll } from '@/storage/Meal/MealGet';
 
 export function Home() {
   const navigation = useNavigation();
-  const [meal, setMeal] = useState([]);
+  const [meal, setMeal] = useState([] as Meals[]);
 
   function handleNavigation() {
     console.log('navigation');
     navigation.navigate('statistic');
   }
-
+  //<MealItem text={item} time={'20:00'} />
   const renderMealList = React.useMemo(() => {
     return (
       <FlatList
         data={meal}
-        keyExtractor={item => item}
-        renderItem={({ item }) => <MealItem text={item} time={'20:00'} />}
+        keyExtractor={item => item.date}
+        renderItem={({ item }) => (
+          <View>
+            <Text style={styles.TextDay}>{item.date}</Text>
+            {item.meals.map(meal => (
+              <MealItem key={meal.id} text={meal.name} time={'20:00'} status={meal.diet}  />
+            ))}
+          </View>
+        )}
         contentContainerStyle={
           (meal.length === 0 && { marginTop: 100 },
           { borderBottomWidth: 50, borderColor: 'transparent' })
@@ -40,7 +48,21 @@ export function Home() {
         showsVerticalScrollIndicator={false}
       />
     );
-  }, []);
+  }, [meal]);
+
+  async function fetchMeals() {
+    try {
+      const data = await mealGetAll();
+      console.log(data);
+      setMeal(data.reverse());
+    } catch (error) {}
+  }
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchMeals();
+    }, []),
+  );
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -60,15 +82,9 @@ export function Home() {
       <Button
         text="Nova refeição"
         type="PRIMARY"
-        onPress={() =>
-          navigation.navigate('mealDetails', {
-            diet: false,
-            mealData: { name: 'xTudo', description: 'sanduiche completo' },
-          })
-        }
+        onPress={() => navigation.navigate('meal', { title: 'Nova refeição' })}
       />
 
-      <Text style={styles.TextDay}>12.08.22</Text>
       {renderMealList}
       <View style={styles.blurOverlay} />
     </SafeAreaView>
