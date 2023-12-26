@@ -15,9 +15,9 @@ type IMealItemProps = TouchableOpacityProps & {
   status?: boolean;
 };
 
-export function MealItem({ text, time, status }: IMealItemProps) {
+export function MealItem({ text, time, status, ...rest }: IMealItemProps) {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity {...rest} style={styles.container}>
       <Text style={styles.time}>{time}</Text>
       <Text style={styles.text}>{text}</Text>
       <View

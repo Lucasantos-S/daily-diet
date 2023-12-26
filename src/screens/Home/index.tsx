@@ -21,7 +21,6 @@ export function Home() {
   const [meal, setMeal] = useState([] as Meals[]);
 
   function handleNavigation() {
-    console.log('navigation');
     navigation.navigate('statistic');
   }
   //<MealItem text={item} time={'20:00'} />
@@ -34,7 +33,15 @@ export function Home() {
           <View>
             <Text style={styles.TextDay}>{item.date}</Text>
             {item.meals.map(meal => (
-              <MealItem key={meal.id} text={meal.name} time={'20:00'} status={meal.diet}  />
+              <MealItem
+                key={meal.id}
+                text={meal.name}
+                time={meal.time}
+                status={meal.diet}
+                onPress={() => {
+                  navigation.navigate('mealDetails', { meal: meal });
+                }}
+              />
             ))}
           </View>
         )}

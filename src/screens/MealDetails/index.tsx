@@ -7,26 +7,27 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute } from '@react-navigation/native';
 import { Button } from '@/components/Button';
 import theme from '@/theme';
+import { Meal } from '@/storage/NewMeal/mealCreate';
 
 type RoutersParams = {
-  diet: string;
-  mealData: {
-    name: string;
-    description: string;
-  };
+  meal: Meal;
 };
 
 export function MealDetails() {
   const route = useRoute();
-  const { diet, mealData } = route.params as RoutersParams;
+  const { meal } = route.params as RoutersParams;
   return (
     <SafeAreaView style={styles.container}>
       <MealHeader title="Refeição" />
       <View style={styles.main}>
-        <Text style={styles.title}>{mealData.name}</Text>
-        <Text style={styles.description}>{mealData.description}</Text>
+        <Text style={styles.title}>{meal.name}</Text>
+        <Text style={styles.description}>{meal.description}</Text>
         <Text style={styles.dateTitle}>Data e hora</Text>
-        <Text style={styles.dateDescription}>12/08/2022 às 16:00</Text>
+        <Text style={styles.dateDescription}>
+          {meal.date}
+          {' às'}
+          {meal.time}
+        </Text>
 
         <View style={styles.statusContainer}>
           <View style={styles.statusContent}>
@@ -34,14 +35,14 @@ export function MealDetails() {
               style={[
                 styles.status,
                 {
-                  backgroundColor: diet
+                  backgroundColor: meal.diet
                     ? theme.COLORS.GREEN_DARK
                     : theme.COLORS.RED_DARK,
                 },
               ]}
             />
             <Text style={styles.statusText}>
-              {diet ? 'dentro da dieta' : 'fora da dieta'}
+              {meal.diet ? 'dentro da dieta' : 'fora da dieta'}
             </Text>
           </View>
         </View>

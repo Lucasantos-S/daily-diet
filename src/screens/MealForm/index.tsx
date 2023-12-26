@@ -40,11 +40,12 @@ export function MealForm() {
     formState: { errors },
   } = useForm<FormData>();
   const onSubmit = handleSubmit(data => {
-    // navigation.navigate('feedback', { diet: IsDiet });
     MealCreate({
       id: JSON.stringify(new Date()),
       ...data,
     });
+
+    navigation.navigate('feedback', { diet: data.diet });
   });
 
   return (

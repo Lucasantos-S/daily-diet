@@ -7,11 +7,7 @@ export declare global {
         title: string;
       };
       mealDetails: {
-        diet: boolean;
-        mealData?: {
-          name: string;
-          description: string;
-        };
+        meal: Meal;
       };
       feedback: {
         diet: boolean;
