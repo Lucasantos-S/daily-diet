@@ -10,23 +10,35 @@ export interface Meal {
   time: string;
   diet?: boolean;
 }
+
 export async function MealCreate(newMeal: Meal) {
   try {
     const storedMeals = await mealGetAll();
-    const updatedMeals = storedMeals;
+    const updatedMeals = [...storedMeals];
     const existingDateIndex = updatedMeals.findIndex(
       meal => meal.date === newMeal.date,
     );
 
     if (existingDateIndex !== -1) {
+      const existingMealIndex = updatedMeals[existingDateIndex].meals.findIndex(
+        meal => meal.id === newMeal.id,
+      );
+
+      if (existingMealIndex !== -1) {
+        updatedMeals[existingDateIndex].meals[existingMealIndex] = {
+          ...newMeal,
+        };
+      }
+
       updatedMeals[existingDateIndex].meals.push(newMeal);
     } else {
       const newEntry = {
         date: newMeal.date,
         meals: [newMeal],
       };
-      updatedMeals.push(newEntry)
+      updatedMeals.push(newEntry);
     }
+
     await AsyncStorage.setItem(MEAL_COLLECTION, JSON.stringify(updatedMeals));
   } catch (error) {
     console.error('Error registering meal:', error);

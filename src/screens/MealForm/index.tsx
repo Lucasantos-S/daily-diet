@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextInput, View } from 'react-native';
+import { Text, View } from 'react-native';
 
 import { styles } from './styles';
 import { MealHeader } from '@/components/MealHeader';
@@ -9,11 +9,11 @@ import { useForm, Controller } from 'react-hook-form';
 import { InputText } from '@/components/InputText';
 import { Button } from '@/components/Button';
 import { SelectButton } from '@/components/SelectButton';
-import { MealCreate } from '@/storage/NewMeal/mealCreate';
-import { v4 as uuidv4 } from 'uuid';
+import { Meal, MealCreate } from '@/storage/NewMeal/mealCreate';
 
 type RouterParams = {
   title: string;
+  meal: Meal;
 };
 
 type FormData = {
@@ -28,7 +28,7 @@ export function MealForm() {
   const [IsDiet, setIsDiet] = React.useState(true as boolean);
 
   const router = useRoute();
-  const { title } = router.params as RouterParams;
+  const { title, meal } = router.params as RouterParams;
 
   const navigation = useNavigation();
 
@@ -48,6 +48,18 @@ export function MealForm() {
     navigation.navigate('feedback', { diet: data.diet });
   });
 
+  const handleSetValue = (infos: any) => {
+    const fieldsKey = Object.keys(infos);
+
+    fieldsKey.forEach((key: any) => {
+      setValue(key, infos[key]);
+    });
+  };
+
+  React.useEffect(() => {
+    if (meal) handleSetValue(meal);
+  }, [meal]);
+
   return (
     <SafeAreaView style={styles.container}>
       <MealHeader title={title}></MealHeader>
@@ -63,7 +75,6 @@ export function MealForm() {
               onBlur={onBlur}
               onChangeText={onChange}
               value={value}
-              onSubmitEditing={onSubmit}
             />
           )}
           name="name"
@@ -101,7 +112,6 @@ export function MealForm() {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-                onSubmitEditing={onSubmit}
                 width="45%"
               />
             )}
@@ -118,7 +128,6 @@ export function MealForm() {
                 onBlur={onBlur}
                 onChangeText={onChange}
                 value={value}
-                onSubmitEditing={onSubmit}
                 width="45%"
               />
             )}

@@ -5,6 +5,7 @@ export declare global {
       statistic: undefined;
       meal: {
         title: string;
+        meal?: Meal;
       };
       mealDetails: {
         meal: Meal;
