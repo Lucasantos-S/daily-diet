@@ -60,7 +60,10 @@ export function Home() {
   async function fetchMeals() {
     try {
       const data = await mealGetAll();
-      console.log(data);
+      // const teste = data.map(item => {
+      //   item.meals.map(item => console.log(item.diet));
+      // });
+      console.log(data)
       setMeal(data.reverse());
     } catch (error) {}
   }

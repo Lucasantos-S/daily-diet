@@ -14,24 +14,27 @@ export interface Meal {
 export async function MealCreate(newMeal: Meal) {
   try {
     const storedMeals = await mealGetAll();
-    const updatedMeals = [...storedMeals];
+    const updatedMeals = [...storedMeals]; // Cria uma cópia para evitar mutação direta
     const existingDateIndex = updatedMeals.findIndex(
       meal => meal.date === newMeal.date,
     );
 
     if (existingDateIndex !== -1) {
-      const existingMealIndex = updatedMeals[existingDateIndex].meals.findIndex(
+      const existingMeal = updatedMeals[existingDateIndex];
+      const existingMealIndex = existingMeal.meals.findIndex(
         meal => meal.id === newMeal.id,
       );
 
       if (existingMealIndex !== -1) {
-        updatedMeals[existingDateIndex].meals[existingMealIndex] = {
+        existingMeal.meals[existingMealIndex] = {
           ...newMeal,
         };
+      } else {
+        // Adiciona a nova refeição, caso não exista
+        existingMeal.meals.push(newMeal);
       }
-
-      updatedMeals[existingDateIndex].meals.push(newMeal);
     } else {
+      // Cria uma nova entrada para o dia
       const newEntry = {
         date: newMeal.date,
         meals: [newMeal],

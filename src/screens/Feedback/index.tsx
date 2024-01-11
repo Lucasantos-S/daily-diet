@@ -9,7 +9,7 @@ import theme from '@/theme';
 import Icons from '@/assets/icons';
 
 type RoutersParams = {
-  diet: string;
+  diet: boolean;
 };
 
 export function Feedback() {

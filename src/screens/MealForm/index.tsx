@@ -37,6 +37,7 @@ export function MealForm() {
     setValue,
     handleSubmit,
     control,
+    watch,
     formState: { errors },
   } = useForm<FormData>();
   const onSubmit = handleSubmit(data => {
@@ -44,9 +45,10 @@ export function MealForm() {
       id: JSON.stringify(new Date()),
       ...data,
     });
-
     navigation.navigate('feedback', { diet: data.diet });
   });
+
+  const { diet } = watch();
 
   const handleSetValue = (infos: any) => {
     const fieldsKey = Object.keys(infos);
@@ -139,14 +141,14 @@ export function MealForm() {
           <SelectButton
             text="Sim"
             type="DIET"
-            IsActive={IsDiet}
-            onPress={() => setIsDiet(true)}
+            IsActive={diet}
+            onPress={() => setValue('diet', true)}
           />
           <SelectButton
             text="Não"
             type="NOT_DIET"
-            IsActive={!IsDiet}
-            onPress={() => setIsDiet(false)}
+            IsActive={!diet}
+            onPress={() => setValue('diet', false)}
           />
         </View>
         <Button text="Cadastrar refeição" type="PRIMARY" onPress={onSubmit} />
