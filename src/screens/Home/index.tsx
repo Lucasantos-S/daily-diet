@@ -15,10 +15,12 @@ import { ArrowIcon } from '@/components/ArrowIcon';
 import { ListEmpty } from '@/components/ListEmpty';
 import Icons from '@/assets/icons';
 import { Meals, mealGetAll } from '@/storage/Meal/MealGet';
+import { useStatistics } from '@/context/statisticsProvider';
 
 export function Home() {
   const navigation = useNavigation();
   const [meal, setMeal] = useState([] as Meals[]);
+  const { teste } = useStatistics();
 
   function handleNavigation() {
     navigation.navigate('statistic');
@@ -63,13 +65,14 @@ export function Home() {
       // const teste = data.map(item => {
       //   item.meals.map(item => console.log(item.diet));
       // });
-      console.log(data)
+      console.log(data);
       setMeal(data.reverse());
     } catch (error) {}
   }
   useFocusEffect(
     React.useCallback(() => {
       fetchMeals();
+      teste();
     }, []),
   );
 
@@ -82,7 +85,7 @@ export function Home() {
       <View style={styles.percentageContent}>
         <ArrowIcon type="OPEN" color onPress={handleNavigation} />
         <PercentageText
-          value=" 30,21%"
+          value="30,21%"
           description="das refeições dentro da dieta"
           fontSize={theme.FONT_SIZE.G}
         />

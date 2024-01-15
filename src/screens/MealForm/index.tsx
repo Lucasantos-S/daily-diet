@@ -10,6 +10,7 @@ import { InputText } from '@/components/InputText';
 import { Button } from '@/components/Button';
 import { SelectButton } from '@/components/SelectButton';
 import { Meal, MealCreate } from '@/storage/NewMeal/mealCreate';
+import { uuid } from '@/utils/uuid';
 
 type RouterParams = {
   title: string;
@@ -42,9 +43,10 @@ export function MealForm() {
   } = useForm<FormData>();
   const onSubmit = handleSubmit(data => {
     MealCreate({
-      id: JSON.stringify(new Date()),
+      id: uuid(),
       ...data,
     });
+
     navigation.navigate('feedback', { diet: data.diet });
   });
 

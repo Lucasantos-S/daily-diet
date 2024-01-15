@@ -23,6 +23,7 @@
     "react-native-screens": "^3.27.0",
     "react-native-svg": "^14.0.0",
     "react-native-svg-transformer": "^1.1.0",
+    "react-native-uuid": "^2.0.1",
     "styled-components": "^6.1.1",
     "uuid": "^9.0.1"
   },

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, View } from 'react-native';
 
 import { styles } from './styles';
+import { useStatistics } from '@/context/statisticsProvider';
 type IPercentageTextProps = {
   fontSize: number;
   value: string;
@@ -13,9 +14,15 @@ export function PercentageText({
   value,
   fontSize,
 }: IPercentageTextProps) {
+  const { teste, mealDiet } = useStatistics();
+  React.useEffect(() => {
+    teste();
+  }, []);
   return (
     <View style={styles.container}>
-      <Text style={[styles.percentage, { fontSize: fontSize }]}>{value}</Text>
+      <Text style={[styles.percentage, { fontSize: fontSize }]}>
+        {mealDiet}
+      </Text>
       <Text style={styles.description}>{description}</Text>
     </View>
   );
