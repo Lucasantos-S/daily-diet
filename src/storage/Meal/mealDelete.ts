@@ -3,7 +3,7 @@ import { mealGetAll } from './mealGet';
 import { MEAL_COLLECTION } from '../storageConfig';
 import { Meal } from './mealRegister';
 
-export async function removeGroupByName(meal: Meal) {
+export async function mealDelet(meal: Meal) {
   try {
     const storage = await mealGetAll();
 

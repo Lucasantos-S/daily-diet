@@ -8,7 +8,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { Button } from '@/components/Button';
 import theme from '@/theme';
 import { Meal } from '@/storage/meal/mealRegister';
-import { removeGroupByName } from '@/storage/meal/mealDelete';
+import { mealDelet } from '@/storage/meal/mealDelete';
 
 type RoutersParams = {
   meal: Meal;
@@ -21,7 +21,7 @@ export function MealDetails() {
   const { meal } = route.params as RoutersParams;
 
   async function removeMeal() {
-    await removeGroupByName(meal);
+    await mealDelet(meal);
     navigation.navigate('home');
   }
   return (

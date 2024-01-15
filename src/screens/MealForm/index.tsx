@@ -9,7 +9,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { InputText } from '@/components/InputText';
 import { Button } from '@/components/Button';
 import { SelectButton } from '@/components/SelectButton';
-import { Meal, MealCreate } from '@/storage/meal/mealRegister';
+import { Meal, mealCreate } from '@/storage/meal/mealRegister';
 import { uuid } from '@/utils/uuid';
 
 type RouterParams = {
@@ -45,7 +45,7 @@ export function MealForm() {
 
   const { diet } = watch();
   const onSubmit = handleSubmit(data => {
-    MealCreate({
+    mealCreate({
       id: uuid(),
       ...data,
     });
