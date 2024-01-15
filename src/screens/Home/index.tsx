@@ -14,14 +14,13 @@ import { ArrowIcon } from '@/components/ArrowIcon';
 
 import { ListEmpty } from '@/components/ListEmpty';
 import Icons from '@/assets/icons';
-import { Meals, mealGetAll } from '@/storage/Meal/MealGet';
+import { mealGetAll } from '@/storage/meal/mealGet';
 import { useStatistics } from '@/context/statisticsProvider';
+import { Meal } from '@/storage/meal/mealRegister';
 
 export function Home() {
   const navigation = useNavigation();
-  const [meal, setMeal] = useState([] as Meals[]);
-  const { teste } = useStatistics();
-
+  const [meal, setMeal] = useState([] as Meal[]);
   function handleNavigation() {
     navigation.navigate('statistic');
   }
@@ -30,21 +29,18 @@ export function Home() {
     return (
       <FlatList
         data={meal}
-        keyExtractor={item => item.date}
+        keyExtractor={item => item.id}
         renderItem={({ item }) => (
           <View>
-            <Text style={styles.TextDay}>{item.date}</Text>
-            {item.meals.map(meal => (
-              <MealItem
-                key={meal.id}
-                text={meal.name}
-                time={meal.time}
-                status={meal.diet}
-                onPress={() => {
-                  navigation.navigate('mealDetails', { meal: meal });
-                }}
-              />
-            ))}
+            <MealItem
+              key={item.id}
+              text={item.name}
+              time={item.time}
+              status={item.diet}
+              onPress={() => {
+                navigation.navigate('mealDetails', { meal: item });
+              }}
+            />
           </View>
         )}
         contentContainerStyle={
@@ -72,7 +68,6 @@ export function Home() {
   useFocusEffect(
     React.useCallback(() => {
       fetchMeals();
-      teste();
     }, []),
   );
 

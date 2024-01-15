@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { Meals, mealGetAll } from '@/storage/Meal/MealGet';
+import { Meals, mealGetAll } from '@/storage/meal/mealGet';
 
 export interface IDecodedContext {
   mealDiet: number;

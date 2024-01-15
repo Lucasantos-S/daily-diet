@@ -7,8 +7,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Button } from '@/components/Button';
 import theme from '@/theme';
-import { Meal } from '@/storage/NewMeal/mealCreate';
-import { removeGroupByName } from '@/storage/DeleteMeal/Delete';
+import { Meal } from '@/storage/meal/mealRegister';
+import { removeGroupByName } from '@/storage/meal/mealDelete';
 
 type RoutersParams = {
   meal: Meal;

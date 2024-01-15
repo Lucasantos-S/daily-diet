@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MEAL_COLLECTION } from '../storageConfig';
-import { mealGetAll } from '../Meal/MealGet';
+import { mealGetAll } from './mealGet';
 
 export interface Meal {
   id: string;
@@ -12,7 +12,6 @@ export interface Meal {
 }
 export async function updateMeal(newMeal: Meal) {
   try {
-    
   } catch (error) {
     console.error('Error registering meal:', error);
   }

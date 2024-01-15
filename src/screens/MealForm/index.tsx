@@ -9,7 +9,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { InputText } from '@/components/InputText';
 import { Button } from '@/components/Button';
 import { SelectButton } from '@/components/SelectButton';
-import { Meal, MealCreate } from '@/storage/NewMeal/mealCreate';
+import { Meal, MealCreate } from '@/storage/meal/mealRegister';
 import { uuid } from '@/utils/uuid';
 
 type RouterParams = {
@@ -18,6 +18,7 @@ type RouterParams = {
 };
 
 type FormData = {
+  id?: string;
   name: string;
   description: string;
   date: string;
@@ -41,16 +42,16 @@ export function MealForm() {
     watch,
     formState: { errors },
   } = useForm<FormData>();
+
+  const { diet } = watch();
   const onSubmit = handleSubmit(data => {
     MealCreate({
       id: uuid(),
       ...data,
     });
 
-    navigation.navigate('feedback', { diet: data.diet });
+    navigation.navigate('feedback', { diet: diet });
   });
-
-  const { diet } = watch();
 
   const handleSetValue = (infos: any) => {
     const fieldsKey = Object.keys(infos);
