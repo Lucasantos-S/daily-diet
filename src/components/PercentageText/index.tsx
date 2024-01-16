@@ -5,7 +5,7 @@ import { styles } from './styles';
 import { useStatistics } from '@/context/statisticsProvider';
 type IPercentageTextProps = {
   fontSize: number;
-  value: string;
+  value: string | number;
   description: string;
 };
 
@@ -14,15 +14,9 @@ export function PercentageText({
   value,
   fontSize,
 }: IPercentageTextProps) {
-  const { teste, mealDiet } = useStatistics();
-  React.useEffect(() => {
-    teste();
-  }, []);
   return (
     <View style={styles.container}>
-      <Text style={[styles.percentage, { fontSize: fontSize }]}>
-        {mealDiet}
-      </Text>
+      <Text style={[styles.percentage, { fontSize: fontSize }]}>{value}</Text>
       <Text style={styles.description}>{description}</Text>
     </View>
   );

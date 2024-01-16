@@ -9,18 +9,28 @@ import { ArrowIcon } from '@/components/ArrowIcon';
 import { PercentageText } from '@/components/PercentageText';
 import { useNavigation } from '@react-navigation/native';
 import { StatisticsCard } from '@/components/StatisticsCard';
+import { useStatistics } from '@/context/statisticsProvider';
 
 export function Statistics() {
+  const { createStatistics, mealStatistics } = useStatistics();
   const navigation = useNavigation();
   function handleNavigation() {
     navigation.navigate('home');
   }
+
+  function getStatistics() {
+    createStatistics();
+  }
+
+  React.useEffect(() => {
+    getStatistics();
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <ArrowIcon type="CLOSE" color onPress={handleNavigation} />
         <PercentageText
-          value="30,21%"
+          value={`${mealStatistics.dietPercentage}%`}
           description="das refeições dentro da dieta"
           fontSize={theme.FONT_SIZE.G}
         />
@@ -28,26 +38,26 @@ export function Statistics() {
       <View style={styles.main}>
         <Text style={styles.title}>Estatísticas gerais</Text>
         <StatisticsCard
-          value="4"
+          value={4}
           description="melhor sequência de pratos dentro da dieta"
           color={theme.COLORS.GRAY_20}
         />
         <StatisticsCard
-          value="109"
+          value={mealStatistics.total}
           description="refeições registradas"
           color={theme.COLORS.GRAY_20}
         />
 
         <View style={styles.meals}>
           <StatisticsCard
-            value="32"
+            value={mealStatistics.diet}
             description="refeições dentro da dieta"
             color={theme.COLORS.GREEN_LIGHT}
             width="48%"
             height={107}
           />
           <StatisticsCard
-            value="77"
+            value={mealStatistics.offDiet}
             description="refeições fora da dieta"
             color={theme.COLORS.RED_LIGHT}
             width="48%"

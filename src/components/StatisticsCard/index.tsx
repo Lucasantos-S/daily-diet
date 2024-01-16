@@ -6,7 +6,7 @@ import { PercentageText } from '../PercentageText';
 import theme from '@/theme';
 
 type StatisticsCardProps = {
-  value: string;
+  value: number;
   description: string;
   color: string;
   height?: number;

@@ -1,10 +1,16 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { Meals, mealGetAll } from '@/storage/meal/mealGet';
+import { mealGetAll } from '@/storage/meal/mealGet';
+
+export type MealStatistics = {
+  diet: number;
+  offDiet: number;
+  total: number;
+  dietPercentage: number;
+};
 
 export interface IDecodedContext {
-  mealDiet: number;
-  teste: () => void;
+  mealStatistics: MealStatistics;
+  createStatistics: () => void;
 }
 
 export interface IDecodedContextProviderProps {
@@ -24,31 +30,33 @@ export interface IDecoded {
 const StatisticsContext = React.createContext({} as IDecodedContext);
 
 function StatisticsProvider({ children }: IDecodedContextProviderProps) {
-  const [mealDiet, setMealDiet] = React.useState(0 as number);
+  const [mealStatistics, setMealStatistics] = React.useState(
+    {} as MealStatistics,
+  );
 
-  async function teste() {
-    try {
-      const storage = await mealGetAll();
-      const mealsList = storage.map(item => {
-        return item.meals;
-      });
+  async function createStatistics() {
+    const storage = await mealGetAll();
 
-      const total = mealsList.reduce((acc, Meals) => {
-        return acc + Meals.length;
-      }, 0);
+    const mealWithinTheDiet = storage.filter(mealsList => {
+      if (mealsList.diet) return mealsList;
+    });
 
-      // const withinTheDiet = mealsList.filter(mealsList => {
-      // return mealsList.
-      // })
+    const offDiet = storage.filter(mealsList => {
+      if (!mealsList.diet) return mealsList;
+    });
 
-      setMealDiet(total);
-    } catch (error) {
-      throw error;
-    }
+    const percentage = (mealWithinTheDiet.length / storage.length) * 100;
+
+    return setMealStatistics({
+      diet: mealWithinTheDiet.length,
+      offDiet: offDiet.length,
+      dietPercentage: +percentage.toFixed(0),
+      total: storage.length,
+    });
   }
 
   return (
-    <StatisticsContext.Provider value={{ mealDiet, teste }}>
+    <StatisticsContext.Provider value={{ mealStatistics, createStatistics }}>
       {children}
     </StatisticsContext.Provider>
   );

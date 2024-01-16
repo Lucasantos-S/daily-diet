@@ -17,6 +17,7 @@ import Icons from '@/assets/icons';
 import { mealGetAll } from '@/storage/meal/mealGet';
 import { useStatistics } from '@/context/statisticsProvider';
 import { Meal } from '@/storage/meal/mealRegister';
+import { mealsWithinTheDiet, result } from '@/utils/statistics';
 
 export function Home() {
   const navigation = useNavigation();
@@ -71,6 +72,8 @@ export function Home() {
     }, []),
   );
 
+  const teste = result
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -80,7 +83,7 @@ export function Home() {
       <View style={styles.percentageContent}>
         <ArrowIcon type="OPEN" color onPress={handleNavigation} />
         <PercentageText
-          value="30,21%"
+          value={`${teste}`}
           description="das refeições dentro da dieta"
           fontSize={theme.FONT_SIZE.G}
         />
