@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View, Animated, FlatList } from 'react-native';
+import { Text, View, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { styles } from './styles';
@@ -17,15 +17,15 @@ import Icons from '@/assets/icons';
 import { mealGetAll } from '@/storage/meal/mealGet';
 import { useStatistics } from '@/context/statisticsProvider';
 import { Meal } from '@/storage/meal/mealRegister';
-import { mealsWithinTheDiet, result } from '@/utils/statistics';
 
 export function Home() {
   const navigation = useNavigation();
+  const { createStatistics, mealStatistics } = useStatistics();
   const [meal, setMeal] = useState([] as Meal[]);
   function handleNavigation() {
     navigation.navigate('statistic');
   }
-  //<MealItem text={item} time={'20:00'} />
+
   const renderMealList = React.useMemo(() => {
     return (
       <FlatList
@@ -59,20 +59,15 @@ export function Home() {
   async function fetchMeals() {
     try {
       const data = await mealGetAll();
-      // const teste = data.map(item => {
-      //   item.meals.map(item => console.log(item.diet));
-      // });
-      console.log(data);
       setMeal(data.reverse());
     } catch (error) {}
   }
   useFocusEffect(
     React.useCallback(() => {
       fetchMeals();
+      createStatistics();
     }, []),
   );
-
-  const teste = result
 
   return (
     <SafeAreaView style={styles.container}>
@@ -83,7 +78,7 @@ export function Home() {
       <View style={styles.percentageContent}>
         <ArrowIcon type="OPEN" color onPress={handleNavigation} />
         <PercentageText
-          value={`${teste}`}
+          value={`${mealStatistics.dietPercentage}%`}
           description="das refeições dentro da dieta"
           fontSize={theme.FONT_SIZE.G}
         />
