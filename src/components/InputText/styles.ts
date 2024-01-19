@@ -20,4 +20,10 @@ export const styles = StyleSheet.create({
     borderColor: theme.COLORS.GRAY_30,
     marginTop: 4,
   },
+  error: {
+    marginTop: 4,
+    color: theme.COLORS.RED_DARK,
+    fontFamily: theme.FONT_FAMILY.REGULAR,
+    fontSize: theme.FONT_SIZE.SM,
+  },
 });
