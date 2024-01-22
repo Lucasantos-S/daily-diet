@@ -33,7 +33,7 @@ export function MealDetails() {
         <Text style={styles.dateTitle}>Data e hora</Text>
         <Text style={styles.dateDescription}>
           {meal.date}
-          {' às'}
+          {' às '}
           {meal.time}
         </Text>
 

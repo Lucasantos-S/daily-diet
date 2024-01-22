@@ -5,7 +5,7 @@ export type MealStatistics = {
   diet: number;
   offDiet: number;
   total: number;
-  dietPercentage: number;
+  dietPercentage: string;
 };
 
 export interface IDecodedContext {
@@ -45,12 +45,16 @@ function StatisticsProvider({ children }: IDecodedContextProviderProps) {
       if (!mealsList.diet) return mealsList;
     });
 
-    const percentage = (mealWithinTheDiet.length / storage.length) * 100;
+    let percentage = 0;
+
+    if (mealWithinTheDiet.length && storage.length) {
+      percentage = (mealWithinTheDiet.length / storage.length) * 100;
+    }
 
     return setMealStatistics({
       diet: mealWithinTheDiet.length,
       offDiet: offDiet.length,
-      dietPercentage: +percentage.toFixed(0),
+      dietPercentage: percentage.toFixed(0),
       total: storage.length,
     });
   }
